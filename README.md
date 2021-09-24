@@ -26,11 +26,17 @@ Where e.idCompany = 5);
 ## 4.	Hacer un programa en Java usando JPA+Hibernate para la conexión con la base de datos, donde El usuario pueda elegir:
 
   ### a.	Traer todos los Registros de la tabla Employee.
+  crudEmployee.getAllEmployees();
   
   ### b.	Buscar empleados por Apellido.
+  crudEmployee.findEmployeeByName("Kameja");
   
   ### c.	Insertar un nuevo Empleado en la tabla Employee.
-  
+  crudEmployee.insertEmployee(200, 1, "jose", "florez", "jf@gmail.com","calle 100 # 7 12", "3114442267", 333.0, birthDate );
+
   ### d.	Modificar un registro de la tabla Employee.
-  
+  crudEmployee.updateEmployee(200, 2, "jose daniel", "florez", "jdf@gmail.com","calle 110 # 77 11", "3111234567", 11000.0, birthDate );
+
   ### e.	Eliminar un registro de la tabla Employee.
+   crudEmployee.deleteEmployee(200);
+
