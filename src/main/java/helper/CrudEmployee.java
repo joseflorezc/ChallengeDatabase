@@ -16,18 +16,22 @@ public class CrudEmployee {
     // no-argument constructor
     public CrudEmployee() { }
 
-    public void insertEmployee(int idEmpl, int idComp, String firstName, String lastName, String email, String address, String phoneNumb, Double Salary, Date birthDa) {
+    public Boolean insertEmployee(int idEmpl, int idComp, String firstName, String lastName, String email, String address, String phoneNumb, Double Salary, Date birthDa) {
         Boolean result = employeeQuery.addEmployee(idEmpl, idComp, firstName, lastName, email, address, phoneNumb, Salary, birthDa);
 
         if ( result == true )
             System.out.println(" Employee Added ");
         else
             System.out.println(" Employee NOT Added ");
+
+        return result;
     }
 
-    public void getAllEmployees() {
+    public int getAllEmployees() {
         resultsEmployee = employeeQuery.getAllEmployees();
+        int numberOfEmployees = 0;
         for (Employee emplo : resultsEmployee) {
+            numberOfEmployees+=1;
             System.out.print(emplo.getIdEmployee()+"  -  ");
             System.out.print(emplo.getIdCompany()+"  -  ");
             System.out.print(emplo.getFirstName()+"  -  ");
@@ -38,6 +42,7 @@ public class CrudEmployee {
             System.out.print(emplo.getSalary()+"  -  ");
             System.out.println(emplo.getBirthDate());
         }
+        return numberOfEmployees;
     }
 
     public void findEmployeeById(int idEmplo) {
@@ -53,9 +58,12 @@ public class CrudEmployee {
             System.out.println(employee.getBirthDate());
     }
 
-    public void findEmployeeByName(String emploName) {
+    public int findEmployeeByName(String emploName) {
         resultsEmployee = employeeQuery.getEmployeeByName(emploName);
+        int resultNumberOfEmployees = 0;
         for (Employee emplo : resultsEmployee) {
+            resultNumberOfEmployees+=1;
+
             System.out.print(emplo.getIdEmployee()+"  -  ");
             System.out.print(emplo.getIdCompany()+"  -  ");
             System.out.print(emplo.getFirstName()+"  -  ");
@@ -66,22 +74,25 @@ public class CrudEmployee {
             System.out.print(emplo.getSalary()+"  -  ");
             System.out.println(emplo.getBirthDate());
         }
+        return resultNumberOfEmployees;
     }
 
-    public void updateEmployee(int idEmpl, int idComp, String firstName, String lastName, String email, String address, String phoneNumb, Double Salary, Date birthDa) {
+    public Boolean updateEmployee(int idEmpl, int idComp, String firstName, String lastName, String email, String address, String phoneNumb, Double Salary, Date birthDa) {
         Boolean result = employeeQuery.updateEmployee(idEmpl, idComp, firstName, lastName, email, address, phoneNumb, Salary, birthDa);
         if ( result == true )
             System.out.println(" Employee Updated ");
         else
             System.out.println(" Employee NOT Updated ");
+        return result;
     }
 
-    public void deleteEmployee(int idEmplo) {
+    public int deleteEmployee(int idEmplo) {
         int result = employeeQuery.deleteEmployee(idEmplo);
 
         if ( result == 1 )
             System.out.println(" Employee Deleted ");
         else
             System.out.println(" Employee NOT Deleted ");
+        return result;
     }
 }
